@@ -33,3 +33,6 @@ MVC (Model - base de dados, View - frontend, Controller - backend)
 Adicionar, em app.js:
 const mongoose = require('mongoose');
 const uri = "mongodb://localhost:9000/leituras";
+
+> npm install axios
+- Controlar de pedidos HTTP (get, post, etc.)
