@@ -19,3 +19,5 @@ No terminal do VS Code
 > cd services
 
 > npm install
+
+> npm start
