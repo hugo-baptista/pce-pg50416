@@ -1,0 +1,21 @@
+Abrir PowerShell como Administrador:
+
+> cd "C:\Google Drive\Universidade\4º Ano\PCE\Aulas\Aula4-FT03"
+
+> docker pull mongo
+
+> docker run -d -p 9000:27017 --name FE03_MongoContainer mongo:latest
+
+No Mongo Compass, entrar no localhost:9000
+
+No terminal do VS Code
+
+> cd Aulas
+
+> cd Aula4-FT03
+
+> express --no-view services
+
+> cd services
+
+> npm install
