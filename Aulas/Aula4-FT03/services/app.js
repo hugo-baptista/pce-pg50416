@@ -6,7 +6,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const mongoose = require('mongoose');
+const uri = "mongodb://localhost:9000/leituras";
+
 var app = express();
+
+mongoose.connect(uri).then(() => console.log('Connected!'));
 
 app.use(logger('dev'));
 app.use(express.json());
