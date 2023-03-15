@@ -21,3 +21,6 @@ No terminal do VS Code
 > npm install
 
 > npm start
+
+> nodemon
+- Faz o mesmo que o "npm start", mas reage automaticamente a atualizações do código
