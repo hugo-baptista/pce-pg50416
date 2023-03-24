@@ -11,7 +11,7 @@ var ClinicalInfoSchema =  new Schema({
     amd_date: {type: Date}, 
     bed: {type: String},
     body_temp: {type: Number},
-    bloodpress: {type: BloodPressSchema},
+    blood_press: {type: BloodPressSchema},
     bpm: {type: Number},
     sato2: {tupe: Number},
     timestamp: {type: Date}
