@@ -28,6 +28,4 @@ router.get("/acedehpeixoto/:id", (req, res) => {
 
 })
 
-
-
 module.exports = router;
