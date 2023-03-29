@@ -1,8 +1,8 @@
 let SensorSchema = require('../model/sensor');
 
-module.exports.newSensor = async (sensorid, sensornum, type) => {
+module.exports.newSensor = async (sensor_id, sensor_num, type) => {
     try {
-        let sensor = new SensorSchema({sensorid, sensornum, type_of_sensor: type});
+        let sensor = new SensorSchema({sensor_id, sensor_num , type_of_sensor: type});
         let response = await sensor.save();
         return {success: true, response};
     } catch(err) {

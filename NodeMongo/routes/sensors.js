@@ -1,6 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var axios = require('axios');
+const { route } = require(".");
+const mongoose = require('mongoose');
+const SensorModel = require("../model/sensor");
 
 router.get("/", (req, res) => {
     res.json({
@@ -26,6 +29,34 @@ router.get("/acedehpeixoto/:id", (req, res) => {
         res.json(err);
     })
 
+})
+
+router.get("/list", (req, res) => {
+    mongoose.connect('mongodb://localhost:9000/leituras');
+
+    SensorModel.find((err, sensors) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(sensors);
+        }
+    });
+
+    mongoose.connection.close();
+})
+
+router.get("/:id", (req, res) => {
+    mongoose.connect('mongodb://localhost:9000/leituras');
+
+    SensorModel.find({sensor_id: req.params.id}, (err, sensors) => {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(sensors);
+        }
+    });
+
+    mongoose.connection.close();
 })
 
 module.exports = router;

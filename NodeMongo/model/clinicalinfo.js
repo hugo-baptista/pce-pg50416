@@ -7,8 +7,8 @@ var BloodPressSchema =  new Schema({
 })
 
 var ClinicalInfoSchema =  new Schema({
-    clinicalinfo_id: {type: Number, unique: true},
-    amd_date: {type: Date}, 
+    clinicalinfo_id: {type: String, unique: true},
+    adm_date: {type: Date}, 
     bed: {type: String},
     body_temp: {type: Number},
     blood_press: {type: BloodPressSchema},
