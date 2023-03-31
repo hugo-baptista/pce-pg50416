@@ -84,7 +84,6 @@ router.get("/acedehpeixoto/:id", (req, res) => {
     }
 
     // resposta
-    var resposta = "";
     res.status(200).json({
       caretakers_info: caretakers_res,
       clinicalinfo_info: clinicalinfo_res,
@@ -96,6 +95,60 @@ router.get("/acedehpeixoto/:id", (req, res) => {
   .catch(err => {
       console.log(err);
       res.json(err);
+  })
+})
+
+
+router.get("/acedehpeixotoalt/:id", (req, res) => {
+  axios.get(
+      'http://nosql.hpeixoto.me/api/sensor/' + req.params.id
+  )
+  .then(async response => {
+    // caretakers
+    const {careteam} = response.data;
+    const promises = careteam.map((caretaker) => {
+      return CaretakerController.newCaretaker(caretaker.id, caretaker.nome)
+        .then(response => {
+          if (!response.success) {
+            throw "Erro ao adicionar caretakers!";
+          }
+        })
+    });
+    await Promise.all(promises);
+
+    // clinicalinfo
+    const {admdate, bed, bodytemp, bloodpress, bpm, sato2, timestamp} = response.data;
+    let newClinicalInfo = await ClinicalInfoController.newClinicalInfo(uuidv4(), admdate, bed, bodytemp, bloodpress.systolic, bloodpress.diastolic, bpm, sato2, timestamp)
+    if (!newClinicalInfo.success) {
+      throw "Erro ao adicionar informação clínica!";
+    }
+
+    // pacient
+    const {patient} = response.data;
+    let newPacientResponse = await PacientController.newPacient(patient.patientid, patient.patientname, patient.patientbirthdate, patient.patientage);
+    if (!newPacientResponse.success) {
+      throw "Erro ao adicionar paciente!";
+    }
+
+    // sensor
+    const {sensorid, sensornum, type_of_sensor} = response.data;
+    let newSensorResponse = await SensorController.newSensor(sensorid, sensornum, type_of_sensor);
+    if (!newSensorResponse.success) {
+      throw "Erro ao adicionar sensor!";
+    }
+
+    // service
+    const {servicecod, servicedesc} = response.data;
+    let newServiceResponse = await ServiceController.newService(servicecod, servicedesc);
+    if (!newServiceResponse.success) {
+      throw "Erro ao adicionar serviço!";
+    }
+
+    // resposta
+    res.status(200).json({success: true, info: "Leitura adicionada com sucesso"});
+  })
+  .catch(err => {
+    res.status(500).json({success: false, info: err});
   })
 })
 
