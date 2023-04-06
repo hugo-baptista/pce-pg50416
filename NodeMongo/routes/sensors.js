@@ -43,24 +43,17 @@ router.get("/list", (req, res) => {
 })
 
 router.put("/update", async (req, res) => {
-    const {sensor_id, sensor_num, type_of_sensor} = req.body;
-    console.log(sensor_id, sensor_num, type_of_sensor);
-    let updateSensorResponse = await SensorController.updateSensor(sensor_id, sensor_num, type_of_sensor);
+    const {sensor_id, new_info} = req.body;
+    let updateSensorResponse = await SensorController.updateSensor(sensor_id, new_info.sensor_num, new_info.type_of_sensor);
     if (updateSensorResponse.success) {
         res.status(200).json({info: "Sensor atualizado com sucesso!"})
-        // .send(updateSensorResponse.response)
     } else {
-        res.status(200).json({info: "Erro ao atualizar sensor!",
-            sensor_id:sensor_id,
-            sensor_num:sensor_num,
-            type_of_sensor:type_of_sensor
-        })
+        res.status(200).json({info: "Erro ao atualizar sensor!"})
     }
 })
 
-router.delete("/remove", async (req, res) => {
-    const {sensor_id} = req.body;
-    let removeSensorResponse = await SensorController.removeSensor(sensor_id);
+router.delete("/delete/:id", async (req, res) => {
+    let removeSensorResponse = await SensorController.removeSensor(req.params.id);
     if (removeSensorResponse.success) {
         res.status(200).json({info: "Sensor removido com sucesso!"})
     } else {
