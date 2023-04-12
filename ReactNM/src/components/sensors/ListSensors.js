@@ -21,30 +21,33 @@ export default function ListSensors() {
   }, []);
   
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Sensores (ID)</TableCell>
-            <TableCell align="right">Número do Sensor</TableCell>
-            <TableCell align="right">Tipo de Sensor</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {sensorList.map((sensor) => (
-            <TableRow
-              key={sensor.sensor_id}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {sensor.sensor_id}
-              </TableCell>
-              <TableCell align="right">{sensor.sensor_num}</TableCell>
-              <TableCell align="right">{sensor.type_of_sensor}</TableCell>
+    <div>
+      <h2>Lista de Sensores Existentes:</h2>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Sensores (ID)</TableCell>
+              <TableCell align="right">Número do Sensor</TableCell>
+              <TableCell align="right">Tipo de Sensor</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {sensorList.map((sensor) => (
+              <TableRow
+                key={sensor.sensor_id}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {sensor.sensor_id}
+                </TableCell>
+                <TableCell align="right">{sensor.sensor_num}</TableCell>
+                <TableCell align="right">{sensor.type_of_sensor}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
