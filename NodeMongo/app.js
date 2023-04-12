@@ -6,10 +6,15 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index.js');
 var sensorsRouter = require('./routes/sensors.js');
 
+var cors = require('cors');
+
 const mongoose = require('mongoose');
 const uri = "mongodb://localhost:9000/leituras";
 
 var app = express();
+
+app.use(cors())
+
 mongoose.set('strictQuery', true);
 mongoose.connect(uri)
   .then(() => console.log('Connected.'))
