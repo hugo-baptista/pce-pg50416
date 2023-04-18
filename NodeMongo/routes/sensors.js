@@ -71,4 +71,14 @@ router.get("/:id", (req, res) => {
     });
 })
 
+router.post("/new", async (req, res) => {
+    const {sensorid, sensornum, type_of_sensor} = req.body;
+    let newSensorResponse = await SensorController.newSensor(sensorid, sensornum, type_of_sensor);
+    if (newSensorResponse.success) {
+        res.status(200).json({success: true, info: "Sensor adicionado com sucesso!"});
+    } else {
+        res.status(200).json({success: false, info: "Erro ao adicionar sensor!"});
+    };
+})
+
 module.exports = router;
