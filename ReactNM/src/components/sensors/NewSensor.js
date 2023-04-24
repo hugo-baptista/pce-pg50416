@@ -3,9 +3,17 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
+import ClearIcon from '@mui/icons-material/Clear';
+import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 
 export default function NewSensor () {
+    const handleClear = () => {
+        document.getElementById('id').value = '';
+        document.getElementById('num').value = '';
+        document.getElementById("type_of_sensor").innerHTML = "cardiac";
+    };
+
     const handleSubmission = () => {
         const new_id = document.getElementById("id").value;
         const new_num = document.getElementById("num").value;
@@ -20,7 +28,8 @@ export default function NewSensor () {
         axios.post("http://localhost:8080/sensors/new", data)
         .then((response) => {
             console.log(response.data);
-            alert(response.data.info);
+            // alert(response.data.info);
+            window.location.reload();
         })
         .catch((err) => console.log(err));
     };
@@ -65,7 +74,12 @@ export default function NewSensor () {
                 ))}
                 </TextField>
             </Box>
-            <Button variant="contained" size="large" onClick={handleSubmission}>Adicionar sensor</Button>
+            <Button variant="outlined" size="large" onClick={handleClear} startIcon={<ClearIcon />}>
+                Limpar
+            </Button>
+            <Button variant="contained" size="large" onClick={handleSubmission} endIcon={<AddIcon />}>
+                Adicionar
+            </Button>
         </div>
     )
 }

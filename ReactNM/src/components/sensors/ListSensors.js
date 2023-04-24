@@ -6,6 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 import axios from 'axios';
 
@@ -19,6 +22,19 @@ export default function ListSensors() {
       console.log(response.data);
     });
   }, []);
+
+  const handleEdit = (id) => {
+    alert("edit sensor with id " + id)
+  }
+
+  const handleDelete = (id) => {
+    axios.delete("http://localhost:8080/sensors/delete/"+id)
+    .then((response) => {
+      // alert(response.data.info)
+      window.location.reload();
+    })
+    .catch((err) => console.log(err));
+  }
   
   return (
     <div>
@@ -30,6 +46,7 @@ export default function ListSensors() {
               <TableCell>Sensores (ID)</TableCell>
               <TableCell align="right">Número do Sensor</TableCell>
               <TableCell align="right">Tipo de Sensor</TableCell>
+              <TableCell align="right">Opções</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -43,6 +60,14 @@ export default function ListSensors() {
                 </TableCell>
                 <TableCell align="right">{sensor.sensor_num}</TableCell>
                 <TableCell align="right">{sensor.type_of_sensor}</TableCell>
+                <TableCell align="right">
+                  <IconButton aria-label="edit" size="small" color='success' onClick={() => handleEdit(sensor.sensor_id)}>
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                  <IconButton aria-label="delete" size="small" color='error' onClick={() => handleDelete(sensor.sensor_id)}>
+                    <DeleteIcon fontSize="small" />
+                  </IconButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
