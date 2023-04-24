@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import {Link} from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -22,10 +23,6 @@ export default function ListSensors() {
       console.log(response.data);
     });
   }, []);
-
-  const handleEdit = (id) => {
-    alert("edit sensor with id " + id)
-  }
 
   const handleDelete = (id) => {
     axios.delete("http://localhost:8080/sensors/delete/"+id)
@@ -61,7 +58,7 @@ export default function ListSensors() {
                 <TableCell align="right">{sensor.sensor_num}</TableCell>
                 <TableCell align="right">{sensor.type_of_sensor}</TableCell>
                 <TableCell align="right">
-                  <IconButton aria-label="edit" size="small" color='success' onClick={() => handleEdit(sensor.sensor_id)}>
+                  <IconButton aria-label="edit" size="small" color='success' onClick={() => window.location.replace("http://localhost:3000/editsensor/"+sensor.sensor_id)}>
                     <EditIcon fontSize="small" />
                   </IconButton>
                   <IconButton aria-label="delete" size="small" color='error' onClick={() => handleDelete(sensor.sensor_id)}>

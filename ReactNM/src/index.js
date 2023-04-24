@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import IndexSensors from './components/sensors/IndexSensors';
+import EditSensor from './components/sensors/EditSensor';
 
 const router = createBrowserRouter ([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter ([
   {
     path: "/sensors",
     element: <IndexSensors />
+  },
+  {
+    path: "/editsensor/:id",
+    element: <EditSensor />
   }
 ])
 
