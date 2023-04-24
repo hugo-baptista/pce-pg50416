@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
 import AddIcon from '@mui/icons-material/Add';
+import {types_of_sensor} from './types_of_sensor';
 import axios from 'axios';
 
 export default function NewSensor () {
@@ -33,21 +34,6 @@ export default function NewSensor () {
         })
         .catch((err) => console.log(err));
     };
-
-    const types_of_sensor = [
-        {
-          value: 'cardiac',
-          label: 'cardiac',
-        },
-        {
-          value: 'lung',
-          label: 'lung',
-        },
-        {
-          value: 'cerebral',
-          label: 'cerebral',
-        }
-      ];
 
     return(
         <div>

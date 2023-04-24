@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import {useParams, Link} from 'react-router-dom';
+import {types_of_sensor} from './types_of_sensor';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,21 +13,6 @@ import axios from 'axios';
 
 export default function EditSensor() {
     const { id } = useParams();
-
-    const types_of_sensor = [
-        {
-          value: 'cardiac',
-          label: 'cardiac',
-        },
-        {
-          value: 'lung',
-          label: 'lung',
-        },
-        {
-          value: 'cerebral',
-          label: 'cerebral',
-        }
-      ];
 
     const baseURL = "http://localhost:8080/sensors/" + id;
 
@@ -55,7 +41,7 @@ export default function EditSensor() {
             type_of_sensor: document.getElementById('type_of_sensor').innerHTML
         }
       }
-      
+
       axios.put("http://localhost:8080/sensors/update", data)
       .then((response) => {
         console.log(response.data);
