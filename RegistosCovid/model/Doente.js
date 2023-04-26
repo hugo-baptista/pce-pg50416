@@ -7,7 +7,7 @@ var DoenteSchema =  new Schema({
     nome: {type: String},
     data_nascimento: {type: String},
     genero: {type: String},
-    codigo_postal: {type: CodigoPostal}
+    codigo_postal: {type: CodigoPostal.Schema}
 })
 
 module.exports = mongoose.model('Doente', DoenteSchema)
