@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 var cors = require('cors');
 
 const mongoose = require('mongoose');
-const uri = "mongodb://localhost:9000/RegistoCovid";
+const uri = "mongodb://localhost:9000/registos";
 
 var app = express();
 
