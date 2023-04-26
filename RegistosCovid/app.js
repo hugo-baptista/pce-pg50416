@@ -18,3 +18,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 module.exports = app;
+
+const importLocalFiles = require('./controller/importLocalFiles');
+
+importLocalFiles.readFile();

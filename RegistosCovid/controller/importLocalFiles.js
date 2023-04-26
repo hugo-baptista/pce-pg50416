@@ -11,9 +11,10 @@ module.exports.readFile = async () => {
         let lines = fileRead.toString().split('\n');
         for(let line of lines) {
             let lineParams = line.split(';');
-            if(lineParams[lineParams.lenght-1].includes('\r')) {
-
+            if(lineParams[lineParams.length-1].includes('\r')) {
+                lineParams[lineParams.length-1] = lineParams[lineParams.length-1].slice(0,-1)
             }
+            console.log(lineParams);
         }
     }
 }
