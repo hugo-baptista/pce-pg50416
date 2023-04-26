@@ -4,7 +4,8 @@ const fs = require('fs');
 
 module.exports.readFile = async () => {
     const filePath = 'C:\\Google Drive\\Universidade\\4º Ano\\ApInf-PCE\\PCE\\RegistosCovid\\content\\';
-    const filenames = ['cod_postal.csv', 'doentes.csv', 'registos_covid19.csv'];
+    // const filenames = ['cod_postal.csv', 'doentes.csv', 'registos_covid19.csv'];
+    const filenames = ['cod_postal.csv'];
 
     for(let name of filenames) {
         const fileRead = fs.readFileSync(filePath+name);

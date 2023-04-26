@@ -3,7 +3,7 @@ var Doente=require('./Doente');
 var Schema = mongoose.Schema;
 
 var RegistoSchema =  new Schema({
-    num_seq: {type: Doente.Schema},
+    num_seq: {type: Schema.Types.ObjectId, ref: 'Doente'},
     data_registo: {type: String},
     temperatura: {type: Number},
     falta_ar: {type: String},
