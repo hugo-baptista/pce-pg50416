@@ -1,17 +1,16 @@
 const fs = require('fs');
 const CodigoPostalController = require('./CodigoPostal')
-// const CodigoPostalController = require('./')
-// const CodigoPostalController = require('./CodigoPostal')
+const DoenteController = require('./Doente')
+const RegistoController = require('./Registo')
 
 // Controladores Aqui
 
 module.exports.readFile = async () => {
     const filePath = 'C:\\Google Drive\\Universidade\\4º Ano\\ApInf-PCE\\PCE\\RegistosCovid\\content\\';
-    // const filenames = ['cod_postal.csv', 'doentes.csv', 'registos_covid19.csv'];
-    // const controllers = [CodigoPostalController]
-    const filenames = ['cod_postal.csv'];
-
-    for(let name of filenames) {
+    const filenames_controllers = [['cod_postal.csv', CodigoPostalController], 
+    ['doentes.csv', DoenteController], ['registos_covid19.csv', RegistoController]];
+    
+    for(let [name, controller] of filenames_controllers) {
         const fileRead = fs.readFileSync(filePath+name);
         let lines = fileRead.toString().split('\n');
         for(let line of lines) {
@@ -20,13 +19,19 @@ module.exports.readFile = async () => {
                 lineParams[lineParams.length-1] = lineParams[lineParams.length-1].slice(0,-1)
             }
 
-            console.log(lineParams);
-            let newCodigoPostal = await CodigoPostalController.newCodigoPostal(lineParams)
-            if (newCodigoPostal.success) {
-                console.log("Sucesso");
-            } else {
-                console.log("Insucesso");
+            // console.log(lineParams);
+            if(name=='registos_covid19.csv' && lineParams[2]) {
+                if(lineParams[2].includes("ºC")) {
+                    lineParams[2] = lineParams[2].slice(0,-3)
+                } else if(lineParams[2].includes("Cel")) {
+                    lineParams[2] = lineParams[2].slice(0,-4)
+                } else if(lineParams[2].includes("[degF]")) {
+                    lineParams[2] = lineParams[2].slice(0,-7)
+                }
+                lineParams[2] = lineParams[2].replace(/\s/g, '')
             }
+
+            await controller.new(lineParams)
         }
     }
 }
