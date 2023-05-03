@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var RegistoSchema =  new Schema({
     num_seq: {type: Number},
     data_registo: {type: String},
-    temperatura: {type: Number},
+    temperatura: {type: String},
     falta_ar: {type: String},
     dor_cabeca: {type: String},
     dor_muscular: {type: String},
