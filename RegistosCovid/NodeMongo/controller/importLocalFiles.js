@@ -24,16 +24,16 @@ module.exports.readFile = async () => {
             }
 
             // console.log(lineParams);
-            if(name=='registos_covid19.csv' && lineParams[2]) {
-                // if(lineParams[2].includes("ºC")) {
-                //     lineParams[2] = lineParams[2].slice(0,-3)
-                // } else if(lineParams[2].includes("Cel")) {
-                //     lineParams[2] = lineParams[2].slice(0,-4)
-                // } else if(lineParams[2].includes("[degF]")) {
-                //     lineParams[2] = lineParams[2].slice(0,-7)
-                // }
-                lineParams[2] = lineParams[2].replace(/\s/g, '')
-            }
+            // if(name=='registos_covid19.csv' && lineParams[2]) {
+            //     if(lineParams[2].includes("ºC")) {
+            //         lineParams[2] = lineParams[2].slice(0,-3)
+            //     } else if(lineParams[2].includes("Cel")) {
+            //         lineParams[2] = lineParams[2].slice(0,-4)
+            //     } else if(lineParams[2].includes("[degF]")) {
+            //         lineParams[2] = lineParams[2].slice(0,-7)
+            //     }
+            //     lineParams[2] = lineParams[2].replace(/\s/g, '')
+            // }
 
             await controller.new(lineParams)
         }
