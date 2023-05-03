@@ -1,5 +1,4 @@
 var mongoose=require('mongoose');
-var CodigoPostal = require('./CodigoPostal');
 var Schema = mongoose.Schema;
 
 var DoenteSchema =  new Schema({

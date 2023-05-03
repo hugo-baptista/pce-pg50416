@@ -1,5 +1,4 @@
 var mongoose=require('mongoose');
-var Doente=require('./Doente');
 var Schema = mongoose.Schema;
 
 var RegistoSchema =  new Schema({
